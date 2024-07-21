@@ -1,4 +1,5 @@
 import { MouseEventHandler, ReactNode } from "react";
+import "../styles/CommonButton.scss";
 
 type CommonButtonProps = {
   children?: ReactNode,
