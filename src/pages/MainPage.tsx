@@ -22,18 +22,20 @@ const MainPage = () => {
 			</div>
 			<div className="body">
         <div className="container-group">
-          <div className="img-container">
-            <img src="https://assets.nflxext.com/ffe/siteui/vlv3/655a9668-b002-4262-8afb-cf71e45d1956/07c4fab7-5551-448b-bc2c-5cc27de3f443/KR-ko-20240715-POP_SIGNUP_TWO_WEEKS-perspective_WEB_d7a9338e-6a75-445b-bba6-0cadac28c8c4_small.jpg" />
-            <div className="img-blur" />
-          </div>
-          <div className="center-container">
-            <div style={{ marginBottom: "10px" }}>
-              <span className="white-3rem-bold">영화, 시리즈 등을 무제한으로</span>
+          <div className="main-container">
+            <div className="img-container">
+              <img src="https://assets.nflxext.com/ffe/siteui/vlv3/655a9668-b002-4262-8afb-cf71e45d1956/07c4fab7-5551-448b-bc2c-5cc27de3f443/KR-ko-20240715-POP_SIGNUP_TWO_WEEKS-perspective_WEB_d7a9338e-6a75-445b-bba6-0cadac28c8c4_small.jpg" />
+              <div className="img-blur" />
             </div>
-            <div style={{ marginBottom: "24px" }}>
-              <span className="white-2rem-regular">어디서나 자유롭게 시청하세요. 해지는 언데든 가능합니다.</span>
+            <div className="center-container">
+              <div style={{ marginBottom: "10px" }}>
+                <span className="white-3rem-bold">영화, 시리즈 등을 무제한으로</span>
+              </div>
+              <div style={{ marginBottom: "24px" }}>
+                <span className="white-2rem-regular">어디서나 자유롭게 시청하세요. 해지는 언데든 가능합니다.</span>
+              </div>
+              <StartNetflixComponent />
             </div>
-            <StartNetflixComponent />
           </div>
           <div className="plan-banner-container">
             <div className="plan-banner">

@@ -43,26 +43,31 @@ a {
   top: 0;
   left: 0;
 
-  .img-container {
+  .main-container {
+    height: 43.7rem;
     position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
 
-    img {
+    .img-container {
+      position: relative;
+      overflow: hidden;
       width: 100%;
       height: 100%;
-      transform: scale(1.25) translateY(-10%);
-      object-fit: cover;
-    }
-
-    .img-blur {
-      background: rgb(0 0 0 / 60%);
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
+  
+      img {
+        width: 100%;
+        height: 100%;
+        transform: scale(1.25) translateY(-10%);
+        object-fit: cover;
+      }
+  
+      .img-blur {
+        background: rgb(0 0 0 / 60%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
     }
   }
 
