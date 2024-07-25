@@ -1,7 +1,5 @@
 import CommonButton from "../components/CommonButton";
-import InputField from "../components/InputField";
 import { ReactComponent as LogoSvg } from "../assets/icons/logo.svg";
-import { useInput } from "../hooks/InputHooks";
 import { IoIosArrowForward } from "react-icons/io";
 import { ReactComponent as EventIconSvg } from "../assets/icons/event-icon.svg";
 import { RiDownloadLine } from "react-icons/ri";
@@ -9,11 +7,9 @@ import "../styles/MainPage.scss";
 import Accordion from "../components/Accordion/Accordion";
 import SvgIcon from "../components/SvgIcon";
 import faqData from "../data/faq.json";
-
+import StartNetflixComponent from "../components/Main/StartNetflixComponent";
 
 const MainPage = () => {
-  const { value, onChange } = useInput();
-
 	return (
 		<div>
 			<div className="header">
@@ -37,22 +33,7 @@ const MainPage = () => {
             <div style={{ marginBottom: "24px" }}>
               <span className="white-2rem-regular">어디서나 자유롭게 시청하세요. 해지는 언데든 가능합니다.</span>
             </div>
-            <div>
-              <span className="white-1rem-regular">시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</span>
-            </div>
-            <div className="email-container">
-              <InputField
-                value={value}
-                onChange={onChange}
-                label="이메일 주소"
-              />
-              <CommonButton className="start-button">
-                <span>
-                  시작하기
-                  <IoIosArrowForward />
-                </span>
-              </CommonButton>
-            </div>
+            <StartNetflixComponent />
           </div>
           <div className="plan-banner-container">
             <div className="plan-banner">
@@ -192,6 +173,8 @@ const MainPage = () => {
                   }
                 </Accordion>
               </div>
+
+              <StartNetflixComponent />
             </div>
           </div>
           <div className="divider" />

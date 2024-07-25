@@ -1,0 +1,28 @@
+.start-netflix-component {
+  .white-1rem-regular {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 400;
+  } 
+  
+  .email-container {
+    display: flex;
+    width: fit-content;
+    height: 56px;
+    margin: 1.5rem auto;
+    flex-wrap: wrap;
+
+    .input-container {
+      margin-right: 10px;
+    }
+
+    .start-button {
+      width: 180px;
+      height: 100%;
+      border-radius: 5px;
+      color: white;
+      font-size: 25px;
+      margin: auto;
+    }
+  }
+}
