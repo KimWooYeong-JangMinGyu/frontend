@@ -8,14 +8,20 @@ import Accordion from "../components/Accordion/Accordion";
 import SvgIcon from "../components/SvgIcon";
 import faqData from "../data/faq.json";
 import StartNetflixComponent from "../components/Main/StartNetflixComponent";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  const navigate = useNavigate();
+
 	return (
 		<div>
 			<div className="header">
 				<div className="header-container">
           <SvgIcon Svg={LogoSvg} width="9.25rem" height="2.5rem" fill="red" />
-					<CommonButton className="login-btn">
+					<CommonButton
+            className="login-btn"
+            onclick={() => navigate("/login")}
+          >
 						<span>로그인</span>
 					</CommonButton>
 				</div>
