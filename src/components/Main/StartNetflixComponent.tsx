@@ -5,7 +5,20 @@ import { useInput } from "../../hooks/InputHooks";
 import "../../styles/StartNetflixComponent.scss";
 
 const StartNetflixComponent = () => {
-  const { value, onChange } = useInput();
+  const validator = (type: string, value: string): boolean => {
+    let isValid: boolean = true;
+
+    switch (type) {
+      case "email": {
+        const regexp: RegExp = new RegExp("^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
+        isValid = regexp.test(value);
+        break;
+      }
+    }
+
+    return isValid;
+  };
+  const { value, onChange, onBlur } = useInput({ type: "email", validator: validator });
 
   return (
     <div className="start-netflix-component">
@@ -16,6 +29,7 @@ const StartNetflixComponent = () => {
         <InputField
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           label="이메일 주소"
         />
         <CommonButton className="start-button">

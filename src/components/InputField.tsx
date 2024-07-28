@@ -1,4 +1,4 @@
-import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import { ChangeEventHandler, FocusEventHandler, HTMLInputTypeAttribute } from "react";
 import "../styles/InputField.scss";
 
 type InputFieldProps = {
@@ -6,6 +6,8 @@ type InputFieldProps = {
   type?: HTMLInputTypeAttribute,
   value?: string,
   onChange?: ChangeEventHandler<HTMLInputElement>,
+  onFocus?: FocusEventHandler<HTMLInputElement>,
+  onBlur?: FocusEventHandler<HTMLInputElement>,
   placeholder?: string,
 };
 
@@ -15,6 +17,8 @@ const InputField = (props: InputFieldProps) => {
     type,
     value,
     onChange,
+    onFocus,
+    onBlur,
     placeholder,
   } = props;
 
@@ -26,6 +30,8 @@ const InputField = (props: InputFieldProps) => {
           type={type}
           value={value}
           onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
           placeholder={placeholder}
           required
         />

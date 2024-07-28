@@ -3,10 +3,18 @@
   min-height: 48px;
   background: rgba(0, 0, 0, 0.5);
   padding: 4px 15px 4px 15px;
-  border: 1px solid grey;
+  border: 1px solid rgba(128, 128, 128, 0.7);
   border-radius: 5px;
   display: flex;
   position: relative;
+
+  &.invalid {
+    border: 1px solid rgb(235, 57, 66);
+  }
+
+  &.valid {
+    border: 1px solid rgb(43, 184, 113);
+  }
   
   &:focus-within {
     outline: 2px solid white;
