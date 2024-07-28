@@ -14,7 +14,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
 	return (
-		<div>
+		<div className="main-page">
 			<div className="header">
 				<div className="header-container">
           <SvgIcon Svg={LogoSvg} width="9.25rem" height="2.5rem" fill="red" />

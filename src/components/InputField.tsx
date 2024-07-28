@@ -4,7 +4,7 @@ import SvgIcon from "./SvgIcon";
 import { ReactComponent as CirCleXSvg } from "../assets/icons/circle-x.svg";
 
 type InputFieldProps = {
-  label?: string,
+  label: string,
   type?: HTMLInputTypeAttribute,
   value?: string,
   onChange?: ChangeEventHandler<HTMLInputElement>,
