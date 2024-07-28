@@ -20,33 +20,23 @@ const useInput = (params: UseInputParams): UseInputReturnType => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const inputContainer = e.target.closest(".input-container");
-
-    let isValid: boolean = true;
-
-    switch (typeof validator) {
-      case "function":
-        isValid = validator(type, value)!;
-        break;
-      case "boolean":
-        isValid = validator;
-        break;
-    }
-
-    if (isValid) {
-      inputContainer?.classList.add("valid");
-      inputContainer?.classList.remove("invalid");
-    } else {
-      inputContainer?.classList.remove("valid");
-      inputContainer?.classList.add("invalid");
-    }
 
     setValue(value);
+    checkValidator(e.target);
   };
 
   const onBlur = (e: FocusEvent<HTMLInputElement>) => {
+    checkValidator(e.target);
+  };
+
+  const checkValidator = (element: HTMLInputElement) => {
+    const inputGroup = element.closest(".input-group");
+    // const inputContainer = inputGroup?.querySelector(".input-container");
+    // const validationMessage = inputGroup?.querySelector(".validation-message");
+
+    // console.log(validationMessage);
+
     let isValid: boolean = true;
-    const inputContainer = e.target.closest(".input-container");
 
     switch (typeof validator) {
       case "function":
@@ -58,11 +48,11 @@ const useInput = (params: UseInputParams): UseInputReturnType => {
     }
 
     if (isValid) {
-      inputContainer?.classList.add("valid");
-      inputContainer?.classList.remove("invalid");
+      inputGroup?.classList.add("valid");
+      inputGroup?.classList.remove("invalid");
     } else {
-      inputContainer?.classList.remove("valid");
-      inputContainer?.classList.add("invalid");
+      inputGroup?.classList.remove("valid");
+      inputGroup?.classList.add("invalid");
     }
   };
 

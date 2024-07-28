@@ -31,6 +31,7 @@ const StartNetflixComponent = () => {
           onChange={onChange}
           onBlur={onBlur}
           label="이메일 주소"
+          validaionMessage="이메일 주소는 반드시 입력하셔야 합니다."
         />
         <CommonButton className="start-button">
           <span>
