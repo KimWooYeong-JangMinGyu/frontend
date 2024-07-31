@@ -1,24 +1,27 @@
 import { IoIosArrowForward } from "react-icons/io";
 import CommonButton from "../CommonButton";
 import InputField from "../InputField";
-import { useInput } from "../../hooks/InputHooks";
 import "../../styles/StartNetflixComponent.scss";
 
 const StartNetflixComponent = () => {
-  const validator = (type: string, value: string): boolean => {
-    let isValid: boolean = true;
+  const validationMessageMap = {
+    invalid_email: "정확한 이메일 주소나 전화번호를 입력하세요.",
+  };
+  const validator = (id: string, value: string): string => {
+    let result: string = "";
 
-    switch (type) {
+    switch (id) {
       case "email": {
         const regexp: RegExp = new RegExp("^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
-        isValid = regexp.test(value);
+        if (value && !regexp.test(value)) {
+          result = "invalid_email";
+        }
         break;
       }
     }
 
-    return isValid;
+    return result;
   };
-  const { value, onChange, onBlur } = useInput({ type: "email", validator: validator });
 
   return (
     <div className="start-netflix-component">
@@ -27,11 +30,10 @@ const StartNetflixComponent = () => {
       </div>
       <div className="email-container">
         <InputField
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
+          id="email"
           label="이메일 주소"
-          validaionMessage="이메일 주소는 반드시 입력하셔야 합니다."
+          validator={validator}
+          validationMessageMap={validationMessageMap}
         />
         <CommonButton className="start-button">
           <span>

@@ -1,62 +1,54 @@
-import { ChangeEvent, FocusEvent, useState } from "react";
+import { ChangeEvent, FocusEvent, RefObject, useRef, useState } from "react";
 
 type UseInputParams = {
-  type: string,
-  validator?: ((type: string, value: string) => boolean) | boolean,
+  id: string,
+  validator?: (id: string, value: string) => string,
 };
 
 type UseInputReturnType = {
+  inputGroupRef: RefObject<HTMLDivElement>,
   value: string,
   onChange: (e: ChangeEvent<HTMLInputElement>) => void,
   onBlur: (e: FocusEvent<HTMLInputElement>) => void,
+  validationMessage: string,
 };
 
 const useInput = (params: UseInputParams): UseInputReturnType => {
   const {
-    type,
-    validator,
+    id,
+    validator = () => "",
   } = params;
+  const inputGroupRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     setValue(value);
-    checkValidator(e.target);
+    checkValidator();
   };
 
-  const onBlur = (e: FocusEvent<HTMLInputElement>) => {
-    checkValidator(e.target);
+  // focus out
+  const onBlur = () => {
+    checkValidator();
   };
 
-  const checkValidator = (element: HTMLInputElement) => {
-    const inputGroup = element.closest(".input-group");
-    // const inputContainer = inputGroup?.querySelector(".input-container");
-    // const validationMessage = inputGroup?.querySelector(".validation-message");
+  const checkValidator = () => {
+    const result: string = validator(id, value);
 
-    // console.log(validationMessage);
-
-    let isValid: boolean = true;
-
-    switch (typeof validator) {
-      case "function":
-        isValid = validator(type, value)!;
-        break;
-      case "boolean":
-        isValid = validator;
-        break;
-    }
-
-    if (isValid) {
-      inputGroup?.classList.add("valid");
-      inputGroup?.classList.remove("invalid");
-    } else {
-      inputGroup?.classList.remove("valid");
-      inputGroup?.classList.add("invalid");
+    if (result) {
+      setValidationMessage(result);
+      inputGroupRef.current?.classList.add("invalid");
+      inputGroupRef.current?.classList.remove("valid");
+    } else if (value) {
+      setValidationMessage("");
+      inputGroupRef.current?.classList.add("valid");
+      inputGroupRef.current?.classList.remove("invalid");
     }
   };
 
-  return { value, onChange, onBlur };
+  return { inputGroupRef, value, onChange, onBlur, validationMessage };
 };
 
 export {

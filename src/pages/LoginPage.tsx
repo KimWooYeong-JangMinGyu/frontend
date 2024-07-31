@@ -2,13 +2,38 @@ import SvgIcon from "../components/SvgIcon";
 import { ReactComponent as LogoSvg } from "../assets/icons/logo.svg";
 import "../styles/LoginPage.scss";
 import InputField from "../components/InputField";
-import { useInput } from "../hooks/InputHooks";
 import CommonButton from "../components/CommonButton";
 import CheckBoxField from "../components/CheckBoxField";
 
 const LoginPage = () => {
-  const validator = true;
-  const { value, onChange, onBlur } = useInput({ type: "email", validator: validator });
+  const validationMessageMap = {
+    required_email: "정확한 이메일 주소나 전화번호를 입력하세요.",
+    invalid_email: "정확한 이메일 주소를 입력하세요.",
+    invalid_password: "비밀번호는 4~60자 사이여야 합니다.",
+  };
+  const validator = (id: string, value: string): string => {
+    let result: string = "";
+
+    switch (id) {
+      case "email": {
+        const regexp: RegExp = new RegExp("^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
+
+        if (!value) {
+          result = "required_email";
+        } else if (!regexp.test(value)) {
+          result = "invalid_email";
+        }
+        break;
+      }
+      case "password":
+        if (!value) {
+          result = "invalid_password";
+        }
+        break;
+    }
+
+    return result;
+  };
 
   return (
     <div className="login-page">
@@ -18,7 +43,9 @@ const LoginPage = () => {
       </div>
       <div className="header">
 				<div className="header-container">
-          <SvgIcon Svg={LogoSvg} width="9.25rem" height="2.5rem" fill="red" />
+          <a href="/">
+            <SvgIcon Svg={LogoSvg} width="9.25rem" height="2.5rem" fill="red" />
+          </a>
 				</div>
 			</div>
 			<div className="body">
@@ -27,19 +54,17 @@ const LoginPage = () => {
             <h1>로그인</h1>
             <div className="login-form">
               <InputField
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
+                id="email"
                 label="이메일 주소"
-                validaionMessage="이메일 주소는 반드시 입력하셔야 합니다."
+                validator={validator}
+                validationMessageMap={validationMessageMap}
               />
               <InputField
+                id="password"
                 type="password"
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
                 label="비밀번호"
-                validaionMessage="비밀번호는 4~60자 사이여야 합니다."
+                validator={validator}
+                validationMessageMap={validationMessageMap}
               />
               <CommonButton className="login-button">
                 <span>로그인</span>
