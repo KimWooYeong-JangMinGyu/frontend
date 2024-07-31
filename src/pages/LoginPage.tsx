@@ -26,7 +26,7 @@ const LoginPage = () => {
         break;
       }
       case "password":
-        if (!value) {
+        if (!value || value.length > 60 || value.length < 4) {
           result = "invalid_password";
         }
         break;

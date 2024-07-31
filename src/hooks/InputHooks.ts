@@ -26,7 +26,7 @@ const useInput = (params: UseInputParams): UseInputReturnType => {
     const { value } = e.target;
 
     setValue(value);
-    checkValidator();
+    changeInputStatus("reset");
   };
 
   // focus out
@@ -38,13 +38,27 @@ const useInput = (params: UseInputParams): UseInputReturnType => {
     const result: string = validator(id, value);
 
     if (result) {
-      setValidationMessage(result);
-      inputGroupRef.current?.classList.add("invalid");
-      inputGroupRef.current?.classList.remove("valid");
+      changeInputStatus("invalid", result);
     } else if (value) {
-      setValidationMessage("");
-      inputGroupRef.current?.classList.add("valid");
-      inputGroupRef.current?.classList.remove("invalid");
+      changeInputStatus("valid", result);
+    }
+  };
+
+  const changeInputStatus = (mode: string, result: string = "") => {
+    setValidationMessage(result);
+
+    switch (mode) {
+      case "invalid":
+        inputGroupRef.current?.classList.add("invalid");
+        inputGroupRef.current?.classList.remove("valid");
+        break;
+      case "valid":
+        inputGroupRef.current?.classList.add("valid");
+        inputGroupRef.current?.classList.remove("invalid");
+        break;
+      case "reset":
+        inputGroupRef.current?.classList.remove("valid");
+        inputGroupRef.current?.classList.remove("invalid");
     }
   };
 
