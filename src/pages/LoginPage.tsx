@@ -4,37 +4,9 @@ import "../styles/LoginPage.scss";
 import InputField from "../components/InputField";
 import CommonButton from "../components/CommonButton";
 import CheckBoxField from "../components/CheckBoxField";
+import LogintValidator from "../validators/LoginValidator";
 
 const LoginPage = () => {
-  const validationMessageMap = {
-    required_email: "정확한 이메일 주소나 전화번호를 입력하세요.",
-    invalid_email: "정확한 이메일 주소를 입력하세요.",
-    invalid_password: "비밀번호는 4~60자 사이여야 합니다.",
-  };
-  const validator = (id: string, value: string): string => {
-    let result: string = "";
-
-    switch (id) {
-      case "email": {
-        const regexp: RegExp = new RegExp("^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
-
-        if (!value) {
-          result = "required_email";
-        } else if (!regexp.test(value)) {
-          result = "invalid_email";
-        }
-        break;
-      }
-      case "password":
-        if (!value || value.length > 60 || value.length < 4) {
-          result = "invalid_password";
-        }
-        break;
-    }
-
-    return result;
-  };
-
   return (
     <div className="login-page">
       <div className="img-container">
@@ -56,15 +28,13 @@ const LoginPage = () => {
               <InputField
                 id="email"
                 label="이메일 주소"
-                validator={validator}
-                validationMessageMap={validationMessageMap}
+                validator={LogintValidator}
               />
               <InputField
                 id="password"
                 type="password"
                 label="비밀번호"
-                validator={validator}
-                validationMessageMap={validationMessageMap}
+                validator={LogintValidator}
               />
               <CommonButton className="login-button">
                 <span>로그인</span>

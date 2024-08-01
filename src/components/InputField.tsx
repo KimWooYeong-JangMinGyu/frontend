@@ -2,7 +2,7 @@ import { ChangeEventHandler, FocusEventHandler, HTMLInputTypeAttribute } from "r
 import "../styles/InputField.scss";
 import SvgIcon from "./SvgIcon";
 import { ReactComponent as CirCleXSvg } from "../assets/icons/circle-x.svg";
-import { useInput } from "../hooks/InputHooks";
+import { useInput } from "../hooks/InputField";
 
 type InputFieldProps = {
   id: string,
@@ -13,7 +13,6 @@ type InputFieldProps = {
   onFocus?: FocusEventHandler<HTMLInputElement>,
   onBlur?: FocusEventHandler<HTMLInputElement>,
   placeholder?: string,
-  validationMessageMap?: { [key: string]: string },
   validator?: (type: string, value: string) => string,
 };
 
@@ -23,7 +22,6 @@ const InputField = (props: InputFieldProps) => {
     label,
     type,
     placeholder,
-    validationMessageMap,
     onChange: customOnChange,
     onFocus: customOnFocus,
     onBlur: customOnBlur,
@@ -59,7 +57,7 @@ const InputField = (props: InputFieldProps) => {
       </div>
       <div className="validation-message">
         <SvgIcon Svg={CirCleXSvg} width={16} height={16} />
-        <span>{validationMessageMap![validationMessage]}</span>
+        <span>{validationMessage}</span>
       </div>
     </div>
   );
