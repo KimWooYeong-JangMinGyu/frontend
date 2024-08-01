@@ -2,6 +2,7 @@ import { MouseEventHandler, ReactNode } from "react";
 import "../styles/CommonButton.scss";
 
 type CommonButtonProps = {
+  type?: "submit" | "reset" | "button" | undefined
   children?: ReactNode,
   className?: string,
   onclick?: MouseEventHandler<HTMLButtonElement> | undefined,
@@ -9,6 +10,7 @@ type CommonButtonProps = {
 
 const CommonButton = (props: CommonButtonProps) => {
   const {
+    type = "button",
     children,
     className,
     onclick,
@@ -16,6 +18,7 @@ const CommonButton = (props: CommonButtonProps) => {
 
   return (
     <button
+      type={type}
       className={`common-button ${className}`}
       onClick={onclick}
     >

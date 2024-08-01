@@ -24,7 +24,9 @@ const LoginPage = () => {
         <div className="login-container">
           <div className="login-inner">
             <h1>로그인</h1>
-            <div className="login-form">
+            <form
+              className="login-form"
+            >
               <InputField
                 id="email"
                 label="이메일 주소"
@@ -36,7 +38,10 @@ const LoginPage = () => {
                 label="비밀번호"
                 validator={LogintValidator}
               />
-              <CommonButton className="login-button">
+              <CommonButton
+                type="submit"
+                className="login-button"
+              >
                 <span>로그인</span>
               </CommonButton>
               <p className="or-text">또는</p>
@@ -44,17 +49,17 @@ const LoginPage = () => {
                 <span>로그인 코드 사용하기</span>
               </CommonButton>
               <a href="#" className="forget-password-link">비밀번호를 잊으셨나요?</a>
-            </div>
-            <div className="login-footer">
-              <CheckBoxField
-                id="save-login-info"
-                label="로그인 정보 저장"
-              />
-              <p>
-                Netflix 회원이 아닌가요?&nbsp;
-                <a href='/'>지금 가입하세요.</a>
-              </p>
-            </div>
+              <div className="login-footer">
+                <CheckBoxField
+                  id="save-login-info"
+                  label="로그인 정보 저장"
+                />
+                <p>
+                  Netflix 회원이 아닌가요?&nbsp;
+                  <a href='/'>지금 가입하세요.</a>
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>

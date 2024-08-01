@@ -98,20 +98,20 @@
               text-decoration: underline;
             }
           }
-        }
 
-        .login-footer {
-          margin-top: 20px;
-
-          p {
-            color: rgba(255,255,255,0.7);
-
-            a {
-              color: white;
-              text-decoration: none;
-
-              &:hover {
-                text-decoration: underline;
+          .login-footer {
+            margin-top: 20px;
+  
+            p {
+              color: rgba(255,255,255,0.7);
+  
+              a {
+                color: white;
+                text-decoration: none;
+  
+                &:hover {
+                  text-decoration: underline;
+                }
               }
             }
           }
