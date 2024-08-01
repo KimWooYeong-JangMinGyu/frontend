@@ -6,7 +6,7 @@ import { RiDownloadLine } from "react-icons/ri";
 import "../styles/MainPage.scss";
 import Accordion from "../components/Accordion/Accordion";
 import SvgIcon from "../components/SvgIcon";
-import faqData from "../data/faq.json";
+import faqData from "../datas/faq.json";
 import StartNetflixComponent from "../components/Main/StartNetflixComponent";
 import { useNavigate } from "react-router-dom";
 
