@@ -3,8 +3,12 @@ import CommonButton from "../CommonButton";
 import InputField from "../InputField";
 import "../../styles/StartNetflixComponent.scss";
 import StartNetflixValidator from "../../validators/StartNetflixValidator";
+import useStartNetflix from "../../hooks/StartNetflix";
+
 
 const StartNetflixComponent = () => {
+  const { emailInputField, email, start } = useStartNetflix();
+
   return (
     <div className="start-netflix-component">
       <div>
@@ -12,11 +16,16 @@ const StartNetflixComponent = () => {
       </div>
       <div className="email-container">
         <InputField
+          ref={emailInputField}
           id="email"
           label="이메일 주소"
           validator={StartNetflixValidator}
+          initValue={email}
         />
-        <CommonButton className="start-button">
+        <CommonButton
+          className="start-button"
+          onclick={start}
+        >
           <span>
             시작하기
             <IoIosArrowForward />

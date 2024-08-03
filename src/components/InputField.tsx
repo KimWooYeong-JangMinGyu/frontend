@@ -1,27 +1,28 @@
-import { ChangeEventHandler, FocusEventHandler, HTMLInputTypeAttribute } from "react";
+import { ChangeEventHandler, FocusEventHandler, ForwardedRef, forwardRef, HTMLInputTypeAttribute } from "react";
 import "../styles/InputField.scss";
 import SvgIcon from "./SvgIcon";
 import { ReactComponent as CirCleXSvg } from "../assets/icons/circle-x.svg";
-import { useInput } from "../hooks/InputField";
+import useInput from "../hooks/InputField";
 
 type InputFieldProps = {
   id: string,
   label: string,
   type?: HTMLInputTypeAttribute,
-  value?: string,
+  placeholder?: string,
+  initValue?: string,
   onChange?: ChangeEventHandler<HTMLInputElement>,
   onFocus?: FocusEventHandler<HTMLInputElement>,
   onBlur?: FocusEventHandler<HTMLInputElement>,
-  placeholder?: string,
   validator?: (type: string, value: string) => string,
 };
 
-const InputField = (props: InputFieldProps) => {
+const InputField = forwardRef((props: InputFieldProps, ref: ForwardedRef<HTMLInputElement>) => {
   const {
     id,
     label,
     type,
     placeholder,
+    initValue,
     onChange: customOnChange,
     onFocus: customOnFocus,
     onBlur: customOnBlur,
@@ -29,22 +30,22 @@ const InputField = (props: InputFieldProps) => {
   } = props;
 
   const {
-    inputGroupRef,
     value,
+    status,
     onChange,
     onBlur,
     validationMessage,
-  } = useInput({ id: id, validator: validator });
+  } = useInput({ id: id, initValue: initValue, validator: validator });
 
   return (
     <div
-      ref={inputGroupRef}
-      className="input-group"
+      className={`input-group ${status}`}
     >
       <div className="input-container">
         <label className={`${value ? "inputed" : ""} input-label`}>{label}</label>
         <div className="input-field">
           <input
+            ref={ref}
             type={type}
             value={value}
             onChange={customOnChange ?? onChange}
@@ -61,6 +62,8 @@ const InputField = (props: InputFieldProps) => {
       </div>
     </div>
   );
-};
+});
+
+InputField.displayName = "InputField";
 
 export default InputField;

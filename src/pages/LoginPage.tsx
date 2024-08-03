@@ -5,8 +5,15 @@ import InputField from "../components/InputField";
 import CommonButton from "../components/CommonButton";
 import CheckBoxField from "../components/CheckBoxField";
 import LogintValidator from "../validators/LoginValidator";
+import { FormEvent } from "react";
 
 const LoginPage = () => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    // TODO : input field 상태를 확인
+    event.preventDefault();
+    console.log("submit");
+  };
+
   return (
     <div className="login-page">
       <div className="img-container">
@@ -26,6 +33,7 @@ const LoginPage = () => {
             <h1>로그인</h1>
             <form
               className="login-form"
+              onSubmit={onSubmit}
             >
               <InputField
                 id="email"
