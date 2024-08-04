@@ -1,14 +1,15 @@
+import { ReactNode } from "react";
 import "../styles/CheckBoxField.scss";
 
 type CheckBoxFieldProps = {
   id: string,
-  label: string,
+  children?: ReactNode,
 };
 
 const CheckBoxField = (props: CheckBoxFieldProps) => {
   const {
     id,
-    label,
+    children,
   } = props;
 
   return (
@@ -17,7 +18,9 @@ const CheckBoxField = (props: CheckBoxFieldProps) => {
         type="checkbox"
         id={id}
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>
+        {children}
+      </label>
     </div>
   );
 };

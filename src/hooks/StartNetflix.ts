@@ -21,9 +21,9 @@ const useStartNetflix = () => {
       const userInfo = getByEmail(email);
 
       if (userInfo) {
-        navigate("/signup/registration");
-      } else {
         navigate("/signup/password");
+      } else {
+        navigate("/signup/registration");
       }
     }
   };

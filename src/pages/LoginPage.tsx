@@ -58,10 +58,9 @@ const LoginPage = () => {
               </CommonButton>
               <a href="#" className="forget-password-link">비밀번호를 잊으셨나요?</a>
               <div className="login-footer">
-                <CheckBoxField
-                  id="save-login-info"
-                  label="로그인 정보 저장"
-                />
+                <CheckBoxField id="save-login-info">
+                  <span>로그인 정보 저장</span>
+                </CheckBoxField>
                 <p>
                   Netflix 회원이 아닌가요?&nbsp;
                   <a href='/'>지금 가입하세요.</a>
