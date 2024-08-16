@@ -3,6 +3,7 @@ import InsertPassword from "../components/Signup/InsertPassword";
 import Registration from "../components/Signup/Registration";
 import Regform from "../components/Signup/Regform";
 import MemberShip from "../components/Signup/Membership";
+import Membershipform from "../components/Signup/Membershipform";
 
 const useSingup = () => {
   const params = useParams();
@@ -17,6 +18,9 @@ const useSingup = () => {
       break;
     case "membership":
       signupBody = MemberShip;
+      break;
+    case "membershipform":
+      signupBody = Membershipform;
       break;
     case "password":
       signupBody = InsertPassword;
