@@ -39,10 +39,7 @@ const Membership = () => {
           </ul>
         </div>
 
-        <CommonButton
-          className="next-button"
-          onclick={() => navigate("/signup/membershipform")}
-        >
+        <CommonButton className="next-button" onclick={() => navigate("/signup/membershipform")}>
           <span>다음</span>
         </CommonButton>
       </div>

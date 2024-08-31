@@ -160,6 +160,117 @@
         }
       }
     }
+
+    &.membershipform {
+        .body-inner{
+          max-width: 1024px;
+          padding: 0 38px;
+          margin: 50px auto;
+        }
+
+        .step {
+          align-self: first baseline;
+          line-height: 19px;
+        }
+
+        .title {
+          align-self: first baseline;
+          font-size: 32px;
+          margin-bottom: 0.9rem;
+        }
+
+        .list {
+          display: flex;
+          width: 100%;
+          
+          .item:last-child {
+            margin-right: 0px;
+          }
+
+          .item {
+            flex: 1 1 0%;
+            cursor: pointer;
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            border-radius: 18px;
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+            transition: margin 250ms ease-in-out, box-shadow 250ms ease-in-out, border-color 250ms ease-in-out;
+            margin-right: 12px;
+
+            .item-title {
+              border-radius: 12px;
+              box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+              box-sizing: border-box;
+              color: white;
+              cursor: pointer;
+              display: flex;
+              flex-direction: column;
+              margin: 8px;
+              min-height: 83px;
+              padding: 10px 16px;
+              background: radial-gradient(140.76% 131.96% at 100% 100%, rgb(109, 59, 227) 0%, rgba(74, 42, 150, 0.5) 73.57%, rgba(74, 42, 150, 0) 100%), rgb(29, 82, 157);
+            }
+      
+            .item-info {
+              box-sizing: border-box;
+              padding: 0px 25px;
+              width: 100%;
+
+              .item-info-row:last-child {
+                border-bottom: 0px;
+              }
+
+              .item-info-row {
+                list-style: none;
+                padding: 12.5px 0px;
+                margin: 0px;
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+
+                .row-name {
+                  font-size: 0.8125rem;
+                  font-weight: 500;
+                  line-height: 1.53846;
+                  color: rgb(118, 118, 118);
+                }
+
+                .row-value {
+                  font-size: 0.875rem;
+                  font-weight: 500;
+                  line-height: 1.5;
+                  color: rgba(0, 0, 0, 0.7);
+                }
+
+                .row-value.price {
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+        }
+
+        .info:first-child {
+          margin-top: 0px;
+        }
+
+        .info {
+          margin: 24px -9px;
+
+          .info-row {
+            color: #737373;
+            display: block;
+            font-size: 13px;
+            padding: 0 16px;
+            margin-top: 10px;
+          }
+        }
+
+        .next-button {
+          margin: 20px auto;
+          max-width: 440px;
+        }
+      }
+    }
   }
 
   .footer-container {
@@ -195,4 +306,3 @@
       }
     }
   }
-}
