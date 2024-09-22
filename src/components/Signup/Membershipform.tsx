@@ -1,43 +1,11 @@
 import CommonButton from "../CommonButton";
+import { mockData, getCaptionResolution, getCaptionQuality, getCaptionAdvertisement } from "../../hooks/Membershipform";
+import SvgIcon from "../SvgIcon";
+import { ReactComponent as CheckSelectSvg } from "../../assets/icons/checkSelect.svg";
+import React, { useState } from "react";
 
 const Membershipform = () => {
-  const mockData = {
-    list: [
-      { membershipId: 1, name: "프리미엄", price: 17000, quality: "better", resolution: "4k_hdr", supportDevice: "TV, 컴퓨터, 스마트폰, 태블릿", activeUsers: 4, activeDevices: 4, advertisement: "no_ad" },
-      { membershipId: 2, name: "스탠다드", price: 13500, quality: "good", resolution: "full_hd", supportDevice: "TV, 컴퓨터, 스마트폰, 태블릿", activeUsers: 2, activeDevices: 2, advertisement: "no_ad" },
-      { membershipId: 3, name: "광고형 스탠다드", price: 5500, quality: "good", resolution: "full_hd", supportDevice: "TV, 컴퓨터, 스마트폰, 태블릿", activeUsers: 2, activeDevices: 2, advertisement: "little_ad" },
-    ],
-  };
-
-  const getCaption_resolution = (value: string, isShort: boolean) => {
-    if (value === "full_hd") {
-      return isShort ? "1080p" : "1080p(풀 HD)";
-    } else if (value === "4k_hdr") {
-      return isShort ? "4K + HDR" : "4K(UHD) + HDR";
-    }
-
-    throw new Error(`Unexpected resolution value: ${value}`);
-  };
-
-  const getCaption_quality = (value: string) => {
-    if (value === "good") {
-      return "좋음";
-    } else if (value === "better") {
-      return "가장 좋음";
-    }
-
-    throw new Error(`Unexpected quality value: ${value}`);
-  };
-
-  const getCaption_advertisement = (value: string) => {
-    if (value === "little_ad") {
-      return "생각보다 적은 광고";
-    } else if (value === "no_ad") {
-      return "무광고";
-    }
-
-    throw new Error(`Unexpected quality value: ${value}`);
-  };
+  const [selectedMembershipId, setSelectedMembershipId] = useState<number | null>(null);
 
   return (
     <div className="body-container membershipform">
@@ -46,11 +14,15 @@ const Membershipform = () => {
         <span className="title">원하는 멤버십을 선택하세요.</span>
         <div className="list">
           {
-            mockData.list.reverse().map((item) => (
-              <div className="item" key={item.membershipId}>
+            mockData.list.map((item) => (
+              <div
+                key={item.membershipId}
+                className={`item ${selectedMembershipId === item.membershipId ? "item-selected" : ""}`}
+                onClick={() => setSelectedMembershipId(item.membershipId)}>
                 <div className="item-title">
                   <span>{item.name}</span>
-                  <span>{getCaption_resolution(item.resolution, true)}</span>
+                  <span>{getCaptionResolution(item.resolution, true)}</span>
+                  <span><SvgIcon className={`check-icon ${selectedMembershipId === item.membershipId ? "check-icon-selected" : ""}`} Svg={CheckSelectSvg}/></span>
                 </div>
                 <ul className="item-info">
                   <li className="item-info-row">
@@ -62,13 +34,13 @@ const Membershipform = () => {
                   <li className="item-info-row">
                     <div>
                       <div className="row-name">화질과 음질</div>
-                      <div className="row-value">{getCaption_quality(item.quality)}</div>
+                      <div className="row-value">{getCaptionQuality(item.quality)}</div>
                     </div>
                   </li>
                   <li className="item-info-row">
                     <div>
                       <div className="row-name">해상도</div>
-                      <div className="row-value">{getCaption_resolution(item.resolution, false)}</div>
+                      <div className="row-value">{getCaptionResolution(item.resolution, false)}</div>
                     </div>
                   </li>
                   <li className="item-info-row">
@@ -92,7 +64,7 @@ const Membershipform = () => {
                   <li className="item-info-row">
                     <div>
                       <div className="row-name">광고</div>
-                      <div className="row-value">{getCaption_advertisement(item.advertisement)}</div>
+                      <div className="row-value">{getCaptionAdvertisement(item.advertisement)}</div>
                     </div>
                   </li>
                 </ul>
